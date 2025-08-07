@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Stories Quiz - Fun Learning for Kids!</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            min-height: 100vh;
+            color: #2d3a4a;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: url('https://svgshare.com/i/13kA.svg') repeat-x, url('https://svgshare.com/i/13kB.svg') repeat-x;
+            background-size: 800px 120px, 400px 60px;
+            background-position: bottom 0 left 0, bottom 60px left 0;
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .bible-icon {
+            font-size: 6rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .start-btn {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border: none;
+            border-radius: 50px;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: bounceBtn 1.2s infinite alternate;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            color: white;
+        }
+        @keyframes bounceBtn {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px) scale(1.03); }
+        }
+        .sparkle { animation: sparkle 1.2s infinite; color: #ffd700; font-size: 2.2rem; vertical-align: middle; }
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px #ffd700); }
+            50% { opacity: 0.5; filter: drop-shadow(0 0 18px #fffbe6); }
+        }
+        .mascot-emoji {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .fun-fact {
+            background: #fffbe6;
+            color: #8b4513;
+            border-radius: 18px;
+            font-size: 1.15rem;
+            font-style: italic;
+            margin: 0 auto 30px auto;
+            max-width: 500px;
+            padding: 12px 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            text-align: center;
+        }
+        .call-to-action {
+            background: linear-gradient(90deg, #ffe082 0%, #ffd54f 100%);
+            border-radius: 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            margin: 40px auto 0 auto;
+            padding: 40px 10px 30px 10px;
+            text-align: center;
+            color: #8b4513;
+            position: relative;
+        }
+        .call-to-action .cta-mascot {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .call-to-action h3 {
+            color: #8b4513;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .call-to-action .start-btn {
+            margin-top: 18px;
+        }
+        .features-section {
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .stories-section {
+            padding: 60px 20px;
+        }
+        
+        .story-preview {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .story-icon {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            background: linear-gradient(90deg, #ffe082 0%, #ffd54f 100%);
+            border-top: 4px solid #ffb300;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.07);
+            margin-top: 60px;
+            color: #6d4c1b;
+        }
+        .footer-verse {
+            font-size: 1.15rem;
+            color: #6d4c1b;
+            font-style: italic;
+            margin-bottom: 6px;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer-copyright {
+            font-size: 0.98rem;
+            color: #8b6f2f;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .bible-icon {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <span class="mascot-emoji" aria-label="Lion mascot">🦁</span>
+        <div class="bible-icon">
+            <i class="fas fa-book-bible"></i>
+        </div>
+        <h1 class="hero-title">Bible Stories Quiz <span class="sparkle" aria-hidden="true">✨</span></h1>
+        <p class="hero-subtitle">Learn about amazing Bible stories while having fun!</p>
+        <div class="fun-fact"><strong>Did you know?</strong> The Bible was written over a period of about 1,500 years!</div>
+        <a href="bible_quiz.php" class="start-btn" id="mainStartBtn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Start your adventure!">
+            <i class="fas fa-play me-2"></i>Start Learning Now!
+        </a>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section">
+        <div class="container">
+            <h2 class="text-center mb-5">
+                <i class="fas fa-star me-2"></i>Why Kids Love Our Bible Quiz
+            </h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h4>Fun & Interactive</h4>
+                        <p>Engaging questions with colorful animations and immediate feedback!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Educational</h4>
+                        <p>Learn important Bible stories with helpful explanations for every answer!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>Works Everywhere</h4>
+                        <p>Play on computers, tablets, or phones - perfect for any device!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stories Preview -->
+    <div class="stories-section">
+        <div class="container">
+            <h2 class="text-center mb-5">
+                <i class="fas fa-book-open me-2"></i>Bible Stories You'll Learn
+            </h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="story-preview">
+                        <div class="story-icon">
+                            <i class="fas fa-rainbow"></i>
+                        </div>
+                        <h5>Noah's Ark</h5>
+                        <p>Learn about the great flood and God's rainbow promise!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="story-preview">
+                        <div class="story-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h5>David and Goliath</h5>
+                        <p>Discover how little David defeated the giant Goliath!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="story-preview">
+                        <div class="story-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h5>Moses and the Red Sea</h5>
+                        <p>See how God parted the Red Sea for His people!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="story-preview">
+                        <div class="story-icon">
+                            <i class="fas fa-lion"></i>
+                        </div>
+                        <h5>Daniel in the Lion's Den</h5>
+                        <p>Learn about Daniel's faith and God's protection!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="story-preview">
+                        <div class="story-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h5>Jesus' Miracles</h5>
+                        <p>Discover the amazing miracles of Jesus!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="story-preview">
+                        <div class="story-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h5>Joseph's Dreams</h5>
+                        <p>Follow Joseph's journey from dreams to greatness!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="call-to-action">
+        <span class="cta-mascot" aria-label="Bible cartoon">📖</span>
+        <h3 class="mb-4">Ready to start your Bible adventure?</h3>
+        <a href="bible_quiz.php" class="start-btn" id="ctaStartBtn">
+            <i class="fas fa-rocket me-2"></i>Launch the Quiz!
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 10px 10px 10px;">
+            <div style="font-size: 2.2rem; color: #ff9800; margin-bottom: 8px;">
+                <i class="fas fa-book-bible" aria-hidden="true"></i>
+            </div>
+            <div class="footer-verse">
+                "Train up a child in the way he should go, and when he is old he will not depart from it."<br><span style="font-size: 1rem; color: #8b4513;">- Proverbs 22:6</span>
+            </div>
+            <div style="font-size: 1.05rem; color: #7b5e2e; margin-bottom: 6px;">Made with <span style="color:#ff9800;">&#10084;&#65039;</span> for all kids and families!</div>
+         
+        </div>
+    </footer>
+
+    <!-- Confetti container -->
+    <div id="confetti-container" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;display:none;"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Confetti effect
+        function showConfetti() {
+            const confetti = document.getElementById('confetti-container');
+            confetti.innerHTML = '';
+            confetti.style.display = 'block';
+            for (let i = 0; i < 100; i++) {
+                const div = document.createElement('div');
+                div.style.position = 'absolute';
+                div.style.left = Math.random() * 100 + 'vw';
+                div.style.top = Math.random() * 100 + 'vh';
+                div.style.width = '12px';
+                div.style.height = '12px';
+                div.style.background = `hsl(${Math.random()*360},90%,60%)`;
+                div.style.borderRadius = '50%';
+                div.style.opacity = 0.8;
+                div.style.transition = 'top 2.5s linear, opacity 2.5s linear';
+                confetti.appendChild(div);
+                setTimeout(() => {
+                    div.style.top = '110vh';
+                    div.style.opacity = 0;
+                }, 50);
+            }
+            setTimeout(() => { confetti.style.display = 'none'; }, 2600);
+        }
+        // Playful sound effect
+        function playStartSound() {
+            const audio = new Audio('https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae1b2.mp3');
+            audio.play();
+        }
+        // Add confetti and sound to main buttons
+        function handleStartBtn(e) {
+            e.preventDefault();
+            playStartSound();
+            showConfetti();
+            setTimeout(() => { window.location.href = 'bible_quiz.php'; }, 700);
+        }
+        document.getElementById('mainStartBtn').addEventListener('click', handleStartBtn);
+        document.getElementById('ctaStartBtn').addEventListener('click', handleStartBtn);
+        // Tooltip init
+        window.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+</body>
+</html> 
